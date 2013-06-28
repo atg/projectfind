@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Project Find' target in the 'Project Find' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
