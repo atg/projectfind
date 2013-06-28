@@ -1,0 +1,27 @@
+SRCS = \
+	src/decompress.c \
+	src/ignore.c \
+	src/log.c \
+	src/main.c \
+	src/options.c \
+	src/print.c \
+	src/scandir.c \
+	src/search.c \
+	src/util.c
+OBJS = $(subst .c,.o,$(SRCS))
+
+VERSION=
+CFLAGS = -O2 -Isrc/win32 -DPACKAGE_VERSION=\"0.15pre\"
+LIBS = -lz -lpthread -lpcre -llzma -lshlwapi
+TARGET = ag.exe
+
+all : $(TARGET)
+
+$(TARGET) : $(OBJS)
+	gcc -o $@ $(OBJS) $(LIBS)
+
+.c.o :
+	gcc -c $(CFLAGS) -Isrc $< -o $@
+
+clean :
+	rm -f src/*.o $(TARGET)
