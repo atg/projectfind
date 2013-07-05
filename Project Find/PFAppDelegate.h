@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PFWindowController;
+
 @interface PFAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (strong) PFWindowController* projectFind;
 
 @end

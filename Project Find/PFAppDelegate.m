@@ -7,12 +7,13 @@
 //
 
 #import "PFAppDelegate.h"
+#import "PFWindowController.h"
 
 @implementation PFAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    self.projectFind = [[PFWindowController alloc] init];
 }
 
 @end

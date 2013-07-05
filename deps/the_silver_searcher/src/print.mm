@@ -1,15 +1,24 @@
 #import <Foundation/Foundation.h>
+#import "city.h"
+
+extern "C" {
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <zlib.h>
+#import <syslog.h>
 
 #include "ignore.h"
 #include "log.h"
 #include "options.h"
 #include "print.h"
 #include "util.h"
+
+#define BEGIN_MATCH "\x02\x11\x01"
+#define END_MATCH   "\x19\x12\x03"
+
+void send_dict(NSDictionary* dict);
 
 int first_file_match = 1;
 
@@ -53,10 +62,13 @@ static uint32_t adler32(const unsigned char *data, size_t len) {
 void print_file_matches(const char* path, const char* buf, const int buf_len, const match matches[], const int matches_len) {
     
     NSMutableArray* matchesArray = [NSMutableArray array];
+    NSMutableArray* linesArray = [NSMutableArray array];
     NSMutableDictionary* matchesDict = [NSMutableDictionary dictionaryWithCapacity:32];
-    matchesDict[@"checksum"] = @(adler32(adler32(0L, Z_NULL, 0), buf, buf_len));
+    matchesDict[@"checksum"] = @(CityHash64(buf, buf_len)); //@(adler32(adler32(0L, Z_NULL, 0), buf, buf_len));
     matchesDict[@"path"] = @(path);
     matchesDict[@"matches"] = matchesArray;
+    matchesDict[@"lines"] = linesArray;
+    matchesDict[@"done"] = @NO;
     
     int line = 1;
     char **context_prev_lines = NULL;
@@ -83,7 +95,7 @@ void print_file_matches(const char* path, const char* buf, const int buf_len, co
         print_path(path, '\n');
     }
 
-    context_prev_lines = ag_calloc(sizeof(char*), (opts.before + 1));
+    context_prev_lines = (char**)ag_calloc(sizeof(char*), (opts.before + 1));
 
     for (i = 0; i <= buf_len && (cur_match < matches_len || lines_since_last_match <= opts.after); i++) {        
         if (cur_match < matches_len && i == matches[cur_match].end) {
@@ -117,6 +129,12 @@ void print_file_matches(const char* path, const char* buf, const int buf_len, co
                         }
                         print_line_number(line - (opts.before - j), sep);
                         fprintf(out_fd, "%s\n", context_prev_lines[prev_line]);
+                        
+                        [linesArray addObject:@{
+                         @"line": @(line - (opts.before - j)),
+                         @"isContext": @YES,
+                         @"string": @(context_prev_lines[prev_line]),
+                         }];
                     }
                 }
             }
@@ -139,30 +157,84 @@ void print_file_matches(const char* path, const char* buf, const int buf_len, co
                 if (opts.print_heading == 0 && !opts.search_stream) {
                     print_path(path, ':');
                 }
+                
+//                NSMutableArray* lineMatches = [NSMutableArray arrayWithCapacity:2];
+                int beforeCount = [matchesArray count];
 
 //                if (opts.ackmate) {
                     /* print headers for ackmate to parse */
 //                    print_line_number(line, ';');
-                    for (; last_printed_match < cur_match; last_printed_match++) {
-                        int str_start = matches[last_printed_match].start;
-                        int str_end = matches[last_printed_match].end;
-                        int str_length = str_end - str_start;
-                        
-                        [matchesArray addObject:@{
-                            @"line": @(line),
-                            @"index": @(i),
-                            @"start": @(str_start),
-                            @"end": @(str_end),
-                            @"string": (str_length > 0 ? [[NSString alloc] initWithBytes:buf + str_start length:str_length encoding:NSUTF8StringEncoding] : @""),
-                        }];
-
+                
+                
+                j = prev_line_offset;
+                int line_begin = j;
+                
+                NSMutableData* alteredData = [NSMutableData dataWithBytes:buf + j length:i - j];
+                NSMutableString* undecoratedString = [(i > j ? [[NSString alloc] initWithBytes:buf + j length:i - j encoding:NSUTF8StringEncoding] : @"") mutableCopy];
+                
+                int alteredOffset = 0;
+                for (; last_printed_match < cur_match; last_printed_match++) {
+                    int str_start = matches[last_printed_match].start;
+                    int str_end = matches[last_printed_match].end;
+                    int str_length = str_end - str_start;
+                    
+                    NSMutableDictionary* lineMatch = [@{
+                        @"line": @(line),
+                        @"index": @(i),
+                        @"start": @(str_start),
+                        @"end": @(str_end),
+                        @"string": (str_length > 0 ? [[NSString alloc] initWithBytes:buf + str_start length:str_length encoding:NSUTF8StringEncoding] : @""),
+                    } mutableCopy];
+                    
+                    [matchesArray addObject:lineMatch];
+                    
+                    [alteredData replaceBytesInRange:NSMakeRange(alteredOffset + str_start - line_begin, 0) withBytes:BEGIN_MATCH length:3];
+                    alteredOffset += 3;
+                    [alteredData replaceBytesInRange:NSMakeRange(alteredOffset + str_end - line_begin, 0) withBytes:END_MATCH length:3];
+                    alteredOffset += 3;
+                    
 //                        fprintf(out_fd, "%i %i",
 //                              (matches[last_printed_match].start - prev_line_offset),
 //                              (matches[last_printed_match].end - matches[last_printed_match].start)
 //                        );
 //                        last_printed_match == cur_match - 1 ? fputc(':', out_fd) : fputc(',', out_fd);
+                }
+                
+                NSString* decoratedString = [[NSString alloc] initWithData:alteredData encoding:NSUTF8StringEncoding];
+                NSUInteger startRange = 0;
+                NSUInteger dsLength = [decoratedString length];
+                NSUInteger searchOffset = 0;
+                for (int matchIdx = 0; ; matchIdx++) {
+                    NSRange r = [decoratedString rangeOfString:@(BEGIN_MATCH) options:NSLiteralSearch range:NSMakeRange(startRange, dsLength - startRange)];
+                    if (r.location == NSNotFound)
+                        break;
+                
+                
+                    NSRange r2 = [decoratedString rangeOfString:@(END_MATCH) options:NSLiteralSearch range:NSMakeRange(NSMaxRange(r), dsLength - NSMaxRange(r))];
+                    if (r2.location == NSNotFound)
+                        break;
+                    
+                    NSMutableDictionary* matchItem = matchesArray[beforeCount + matchIdx];
+                    matchItem[@"startIndex"] = @(r.location - searchOffset);
+                    searchOffset += 3;
+                    
+                    matchItem[@"endIndex"] = @(r2.location - searchOffset);
+                    searchOffset += 3;
+
+                    
+                        startRange = NSMaxRange(r2);
                     }
-                    j = prev_line_offset;
+                         
+                    int afterCount = [matchesArray count];
+                    [linesArray addObject:@{
+                        @"line": @(line),
+                        @"isContext": @NO,
+                        @"matchIndex": @(beforeCount),
+                        @"numberMatches": @(afterCount - beforeCount),
+                        @"string": undecoratedString,
+                    }];
+
+                
                     /* print up to current char */
 //                    for (; j <= i; j++) {
 //                        fputc(buf[j], out_fd);
@@ -204,7 +276,16 @@ void print_file_matches(const char* path, const char* buf, const int buf_len, co
                     print_path(path, ':');
                 }
                 print_line_number(line, sep);
-
+                
+                const char* line_it = buf + prev_line_offset;
+                const char* line_et = buf + i;
+                
+                [linesArray addObject:@{
+                    @"line": @(line),
+                    @"isContext": @YES,
+                    @"string": (line_et - line_it > 0 ? [[NSString alloc] initWithBytes:line_it length:line_et - line_it encoding:NSUTF8StringEncoding] : @""),
+                }];
+                
                 for (j = prev_line_offset; j < i; j++) {
                     fputc(buf[j], out_fd);
                 }
@@ -218,6 +299,10 @@ void print_file_matches(const char* path, const char* buf, const int buf_len, co
             }
         }
     }
+    
+    syslog(LOG_ERR, "[project find] found matches");
+    NSLog(@"matchesDict = %@", matchesDict);
+    send_dict(matchesDict);
     
     for (i = 0; i < opts.before; i++) {
         if (context_prev_lines[i] != NULL) {
@@ -254,4 +339,6 @@ const char* normalize_path(const char* path) {
     } else {
         return path;
     }
+}
+
 }

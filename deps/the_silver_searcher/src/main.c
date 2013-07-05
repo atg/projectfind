@@ -14,6 +14,8 @@
 #include "search.h"
 #include "util.h"
 
+#import <syslog.h>
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -30,11 +32,18 @@ int projectfind(int argc, char **argv) {
 
     set_log_level(LOG_LEVEL_WARN);
 
+    for (int j = 0; j < argc; j++) {
+        syslog(LOG_ERR, "  [project find] '%s'", argv[j]);
+    }
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
+
     work_queue = NULL;
     work_queue_tail = NULL;
     memset(&stats, 0, sizeof(stats));
     root_ignores = init_ignore(NULL);
     out_fd = stdout;
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
+
 #ifdef USE_PCRE_JIT
     int has_jit = 0;
     pcre_config(PCRE_CONFIG_JIT, &has_jit);
@@ -42,11 +51,13 @@ int projectfind(int argc, char **argv) {
         study_opts |= PCRE_STUDY_JIT_COMPILE;
     }
 #endif
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     gettimeofday(&(stats.time_start), NULL);
 
     parse_options(argc, argv, &base_paths, &paths);
     log_debug("PCRE Version: %s", pcre_version());
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
 #ifdef _WIN32
     {
@@ -63,6 +74,7 @@ int projectfind(int argc, char **argv) {
         workers_len = opts.workers;
     if (workers_len < 1)
         workers_len = 1;
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     log_debug("Using %i workers", workers_len);
     done_adding_files = FALSE;
@@ -75,9 +87,11 @@ int projectfind(int argc, char **argv) {
         die("pthread_mutex_init failed!");
     if (pthread_mutex_init(&work_queue_mtx, NULL))
         die("pthread_mutex_init failed!");
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     if (opts.casing == CASE_SMART)
         opts.casing = is_lowercase(opts.query) ? CASE_INSENSITIVE : CASE_SENSITIVE;
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     if (opts.literal) {
         if (opts.casing == CASE_INSENSITIVE) {
@@ -106,6 +120,7 @@ int projectfind(int argc, char **argv) {
         }
         compile_study(&opts.re, &opts.re_extra, opts.query, pcre_opts, study_opts);
     }
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     if (opts.search_stream) {
         search_stream(stdin, "");
@@ -129,6 +144,7 @@ int projectfind(int argc, char **argv) {
             }
         }
     }
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     if (opts.stats) {
         gettimeofday(&(stats.time_end), NULL);
@@ -138,6 +154,7 @@ int projectfind(int argc, char **argv) {
 
         printf("%ld matches\n%ld files searched\n%ld bytes searched\n%f seconds\n", stats.total_matches, stats.total_files, stats.total_bytes, time_diff);
     }
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
 
     if (opts.pager) {
         pclose(out_fd);
@@ -146,6 +163,7 @@ int projectfind(int argc, char **argv) {
     pthread_mutex_destroy(&work_queue_mtx);
     pthread_mutex_destroy(&stats_mtx);
     pthread_mutex_destroy(&print_mtx);
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
     cleanup_ignore(root_ignores);
     free(workers);
     for (i = 0; paths[i] != NULL; i++) {
@@ -154,5 +172,6 @@ int projectfind(int argc, char **argv) {
     }
     free(base_paths);
     free(paths);
+    syslog(LOG_ERR, "[project find] LINE %d", __LINE__);
     return 0;
 }
