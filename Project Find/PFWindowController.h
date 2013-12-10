@@ -49,5 +49,6 @@
 - (IBAction)findField:(id)sender;
 - (IBAction)replaceField:(id)sender;
 - (IBAction)nagReplaceButton:(id)sender;
+- (IBAction)toggleRegex:(id)sender;
 
 @end

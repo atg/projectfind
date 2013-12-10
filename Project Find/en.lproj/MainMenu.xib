@@ -119,6 +119,18 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Search" id="Qo0-OC-5j3">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Search" id="WxS-ud-Vfi">
+                        <items>
+                            <menuItem title="Regular Expression" keyEquivalent="r" id="IgU-ns-927">
+                                <connections>
+                                    <action selector="toggleRegex:" target="1118" id="Yrv-U8-S3P"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Edit" id="217">
                     <menu key="submenu" title="Edit" id="205">
                         <items>

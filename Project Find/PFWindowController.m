@@ -145,8 +145,8 @@ static BOOL performReplacement(NSString* path, const char* repl, NSArray* matche
     return self;
 }
 
-#define PFSettingString(k) [[NSUserDefaults standardUserDefaults] stringForKey:@"CHProjectFind" k]
-#define PFSettingBool(k) [[NSUserDefaults standardUserDefaults] boolForKey:@"CHProjectFind" k]
+#define PFSettingString(k)  [[NSUserDefaults standardUserDefaults] stringForKey:@"CHProjectFind" k]
+#define PFSettingBool(k)    [[NSUserDefaults standardUserDefaults] boolForKey:@"CHProjectFind" k]
 #define PFSettingInteger(k) [[NSUserDefaults standardUserDefaults] integerForKey:@"CHProjectFind" k]
 
 static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
@@ -663,6 +663,15 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
 - (void)popoverDidClose:(NSNotification *)notification {
     self.replacementMatches = nil;
 }
+
+- (IBAction)toggleRegex:(id)sender {
+    BOOL flipRegex = !PFSettingBool(@"Regex");
+    
+    [[NSUserDefaults standardUserDefaults] setBool:flipRegex forKey:@"CHProjectFindRegex"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 - (void)showWindow:(id)sender {
 //    NSString* projectDirectory = [[[[[CHApplicationController sharedController] mostActiveProject] directoryURL] path] copy];
     [self activateForProjectDirectory:(__strong id)nil];

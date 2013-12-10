@@ -79,7 +79,7 @@
 											<int key="NSvFlags">2322</int>
 											<string key="NSFrameSize">{450, 291}</string>
 											<reference key="NSSuperview" ref="528588727"/>
-											<reference key="NSNextKeyView" ref="43241949"/>
+											<reference key="NSNextKeyView" ref="283885966"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="950637706">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -205,7 +205,7 @@
 							</array>
 							<string key="NSFrame">{{0, 32}, {450, 291}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSNextKeyView" ref="528588727"/>
+							<reference key="NSNextKeyView" ref="43241949"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133648</int>
 							<reference key="NSVScroller" ref="283885966"/>
@@ -336,9 +336,9 @@
 										<string key="NSCellIdentifier">_NS:22</string>
 										<reference key="NSControlView" ref="920009273"/>
 										<int key="NSButtonFlags">-2038153216</int>
-										<int key="NSButtonFlags2">163</int>
+										<int key="NSButtonFlags2">268435619</int>
 										<string key="NSAlternateContents"/>
-										<string key="NSKeyEquivalent"/>
+										<string key="NSKeyEquivalent">,</string>
 										<int key="NSPeriodicDelay">400</int>
 										<int key="NSPeriodicInterval">75</int>
 									</object>
@@ -1025,6 +1025,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						<bool key="NSControlAutosetMaxLayoutWidth">YES</bool>
+						<double key="NSPreferredMaxLayoutWidth">340</double>
 						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 					</object>
 					<object class="NSTextField" id="462725669">
@@ -1048,6 +1049,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						<bool key="NSControlAutosetMaxLayoutWidth">YES</bool>
+						<double key="NSPreferredMaxLayoutWidth">78</double>
 						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
 					</object>
 					<object class="NSButton" id="710917275">
@@ -4352,7 +4354,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1813</int>
+			<int key="maxID">1814</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
