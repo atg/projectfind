@@ -3,11 +3,14 @@
 #import "PFWindowController.h"
 #import "XPCBridge.h"
 #import "zlib.h"
+#import "CHSplitController.h"
+#import "CHGenericRecipe.h"
+#import "CHSplitController.h"
+#import "CHTextViewController.h"
+#import "CHApplicationController.h"
 
 #define BEGIN_MATCH "\x02\x11\x01"
 #define END_MATCH   "\x19\x12\x03"
-
-#define CHDebug NSLog
 
 static char isValidEscape(char c, int g) {
     return c == '\\'
@@ -282,19 +285,19 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
 	//Try with the document controller
 	NSError *err = nil;
 	NSDocument *doc = [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:openURL display:YES error:&err];
-//    if ([doc respondsToSelector:@selector(setActiveIn:)])
-//        [doc setActiveIn:nil];
+    if ([doc respondsToSelector:@selector(setActiveIn:)])
+        [doc setActiveIn:nil];
     
     
-//    if (linenum) {
-//        [[[doc bestSplitPreferringWindowController:nil] view] goToLine:linenum];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            CHSplitController* sp = [doc bestSplitPreferringWindowController:nil];
-//            [[sp view] goToLine:linenum];
-//            [[[[sp tabController] windowController] window] makeKeyAndOrderFront:nil];
-//        });
-//    }
+    if (linenum) {
+        [[[doc bestSplitPreferringWindowController:nil] view] goToLine:linenum];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CHSplitController* sp = [doc bestSplitPreferringWindowController:nil];
+            [[sp view] goToLine:linenum];
+            [[[[sp tabController] windowController] window] makeKeyAndOrderFront:nil];
+        });
+    }
 
     /*
     if (range.location != NSNotFound && range.length != 0) {
@@ -664,8 +667,8 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
     self.replacementMatches = nil;
 }
 - (void)showWindow:(id)sender {
-//    NSString* projectDirectory = [[[[[CHApplicationController sharedController] mostActiveProject] directoryURL] path] copy];
-    [self activateForProjectDirectory:(__strong id)nil];
+    NSString* projectDirectory = [[[[[CHApplicationController sharedController] mostActiveProject] directoryURL] path] copy];
+    [self activateForProjectDirectory:projectDirectory];
     [self.window makeKeyAndOrderFront:nil];
 }
 - (void)awakeFromNib {

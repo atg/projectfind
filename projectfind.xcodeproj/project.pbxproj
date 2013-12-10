@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		669DB20C185769D3009F2219 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6C3C2177CEE860091C20D /* libz.dylib */; };
+		669DB20F18576A87009F2219 /* CHGradientBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 669DB20E18576A87009F2219 /* CHGradientBar.m */; };
 		75D6C391177CDAFC0091C20D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6C390177CDAFC0091C20D /* Foundation.framework */; };
 		75D6C397177CDAFC0091C20D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75D6C395177CDAFC0091C20D /* InfoPlist.strings */; };
 		75D6C39A177CDAFC0091C20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D6C399177CDAFC0091C20D /* main.m */; };
@@ -62,6 +64,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		669DB20D18576A87009F2219 /* CHGradientBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHGradientBar.h; sourceTree = "<group>"; };
+		669DB20E18576A87009F2219 /* CHGradientBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHGradientBar.m; sourceTree = "<group>"; };
 		75D6C38D177CDAFC0091C20D /* com.chocolatapp.Chocolat.projectfind.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = com.chocolatapp.Chocolat.projectfind.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D6C390177CDAFC0091C20D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		75D6C394177CDAFC0091C20D /* projectfind-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "projectfind-Info.plist"; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669DB20C185769D3009F2219 /* libz.dylib in Frameworks */,
 				75D6C3D0177D9BBA0091C20D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +243,8 @@
 		75D6C3D5177D9BBA0091C20D /* Project Find */ = {
 			isa = PBXGroup;
 			children = (
+				669DB20D18576A87009F2219 /* CHGradientBar.h */,
+				669DB20E18576A87009F2219 /* CHGradientBar.m */,
 				75D6C3E1177D9BBA0091C20D /* PFAppDelegate.h */,
 				75D6C3E2177D9BBA0091C20D /* PFAppDelegate.m */,
 				75D6C3EF177F6AF20091C20D /* PFProjectFind.xib */,
@@ -380,6 +387,7 @@
 				75D6C3E3177D9BBA0091C20D /* PFAppDelegate.m in Sources */,
 				75D6C3ED177DCE780091C20D /* PFWindowController.m in Sources */,
 				75D6C402178205390091C20D /* XPCBridge.mm in Sources */,
+				669DB20F18576A87009F2219 /* CHGradientBar.m in Sources */,
 				75D6C40917848E8F0091C20D /* city.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
