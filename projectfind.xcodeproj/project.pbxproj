@@ -27,7 +27,6 @@
 		75D6C3E3177D9BBA0091C20D /* PFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D6C3E2177D9BBA0091C20D /* PFAppDelegate.m */; };
 		75D6C3E6177D9BBB0091C20D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D6C3E4177D9BBB0091C20D /* MainMenu.xib */; };
 		75D6C3ED177DCE780091C20D /* PFWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75D6C3EB177DCE780091C20D /* PFWindowController.mm */; };
-		75D6C3EE177DCE780091C20D /* PFWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D6C3EC177DCE780091C20D /* PFWindowController.xib */; };
 		75D6C3F1177F6AF20091C20D /* PFProjectFind.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D6C3EF177F6AF20091C20D /* PFProjectFind.xib */; };
 		75D6C3F31780C5570091C20D /* com.chocolatapp.Chocolat.projectfind.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75D6C38D177CDAFC0091C20D /* com.chocolatapp.Chocolat.projectfind.xpc */; };
 		75D6C3FC1780CA840091C20D /* liblzma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6C3FA1780CA840091C20D /* liblzma.a */; };
@@ -105,7 +104,6 @@
 		75D6C3E5177D9BBB0091C20D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		75D6C3EA177DCE780091C20D /* PFWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWindowController.h; sourceTree = "<group>"; };
 		75D6C3EB177DCE780091C20D /* PFWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PFWindowController.mm; sourceTree = "<group>"; };
-		75D6C3EC177DCE780091C20D /* PFWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFWindowController.xib; sourceTree = "<group>"; };
 		75D6C3F0177F6AF20091C20D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PFProjectFind.xib; sourceTree = "<group>"; };
 		75D6C3FA1780CA840091C20D /* liblzma.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzma.a; path = lib/liblzma.a; sourceTree = "<group>"; };
 		75D6C3FB1780CA840091C20D /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcre.a; path = lib/libpcre.a; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 				75D6C3E4177D9BBB0091C20D /* MainMenu.xib */,
 				75D6C3EA177DCE780091C20D /* PFWindowController.h */,
 				75D6C3EB177DCE780091C20D /* PFWindowController.mm */,
-				75D6C3EC177DCE780091C20D /* PFWindowController.xib */,
 				75D6C3D6177D9BBA0091C20D /* Supporting Files */,
 				75D6C40317845E7F0091C20D /* PFProgressGradientBar.h */,
 				75D6C40417845E7F0091C20D /* PFProgressGradientBar.m */,
@@ -348,7 +345,6 @@
 				75D6C3DA177D9BBA0091C20D /* InfoPlist.strings in Resources */,
 				75D6C3E0177D9BBA0091C20D /* Credits.rtf in Resources */,
 				75D6C3E6177D9BBB0091C20D /* MainMenu.xib in Resources */,
-				75D6C3EE177DCE780091C20D /* PFWindowController.xib in Resources */,
 				75D6C3F1177F6AF20091C20D /* PFProjectFind.xib in Resources */,
 				75D6C420178500540091C20D /* ewok.jpg in Resources */,
 			);
@@ -593,6 +589,7 @@
 				75D6C3E9177D9BBB0091C20D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
