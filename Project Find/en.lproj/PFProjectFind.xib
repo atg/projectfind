@@ -100,7 +100,7 @@
 												<int key="NSTCFlags">1</int>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
-												<int key="NSFlags">67111809</int>
+												<int key="NSFlags">2945</int>
 												<int key="NSTextCheckingTypes">0</int>
 												<nil key="NSMarkedAttributes"/>
 												<object class="NSColor" key="NSBackgroundColor" id="1004050903">
@@ -430,7 +430,7 @@
 					<string key="NSFrameSize">{450, 360}</string>
 					<reference key="NSNextKeyView" ref="588218304"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
 				<string key="NSMinSize">{360, 242}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSAutorecalculatesContentBorderThicknessMinY">NO</bool>
@@ -1242,6 +1242,14 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 						<reference key="destination" ref="710917275"/>
 					</object>
 					<int key="connectionID">1789</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">optionsButton:</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="920009273"/>
+					</object>
+					<int key="connectionID">1816</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3097,6 +3105,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 							<reference ref="301584683"/>
 						</array>
 						<reference key="parent" ref="588218304"/>
+						<string key="objectName">Find Field</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1057</int>
@@ -3132,6 +3141,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 							</object>
 						</array>
 						<reference key="parent" ref="588218304"/>
+						<string key="objectName">Options Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1066</int>
@@ -3140,6 +3150,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 							<reference ref="1020239655"/>
 						</array>
 						<reference key="parent" ref="588218304"/>
+						<string key="objectName">Replace Field</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1067</int>
@@ -3165,6 +3176,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 							</object>
 						</array>
 						<reference key="parent" ref="588218304"/>
+						<string key="objectName">Find Replace Control - Stop, Replace</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1068</int>
@@ -3357,6 +3369,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 							</object>
 						</array>
 						<reference key="parent" ref="588218304"/>
+						<string key="objectName">Regex Button - \$</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1486</int>
@@ -4354,7 +4367,7 @@ YXMgc2V0IGNvcnJlY3RseSwgYW5kIHRoZSByaWdodCBmaWxlcyBhcmUgYmVpbmcgcmVwbGFjZWQuA</s
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1814</int>
+			<int key="maxID">1816</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
