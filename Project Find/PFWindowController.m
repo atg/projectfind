@@ -272,6 +272,10 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
     
     self.actionPopoverMatch = nil;
 }
+- (IBAction)openDocument:(id)sender {
+    [self chooseButton:sender];
+}
+
 - (void)openFileAtPath:(NSString *)path linenum:(int)linenum //range:(NSRange)range
 {
     if (![path length])
