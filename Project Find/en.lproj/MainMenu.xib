@@ -64,12 +64,12 @@
                         <items>
                             <menuItem title="New" keyEquivalent="n" id="82">
                                 <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
+                                    <action selector="openNewWindow:" target="1118" id="DWP-Gv-BDz"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
-                                    <action selector="openDocument:" target="1118" id="NKy-1G-iNG"/>
+                                    <action selector="openDocument:" target="1118" id="dkd-O7-cHK"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open Recent" id="124">

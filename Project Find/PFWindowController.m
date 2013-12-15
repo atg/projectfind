@@ -607,6 +607,7 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
         self.lastProjectDirectory = projectDirectory;
         self.rootPath = projectDirectory;
     }
+    [self.window setTitle:self.rootPath];
     
     [self.findReplaceButtons setEnabled:NO forSegment:1];
     [self.window makeFirstResponder:self.findField];
@@ -624,6 +625,8 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
     NSString* path = [[[op URL] path] stringByStandardizingPath];
     if (!path)
         return;
+    
+    [[self window] setTitle:path];
     
     self.rootPath = path;
 }
@@ -675,9 +678,11 @@ static NSArray* CHSplitStripNoDot(NSString* s, NSString* bystr) {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (IBAction)openNewWindow:(id)sender {
+    [[PFWindowController alloc] init];
+}
 
 - (void)showWindow:(id)sender {
-//    NSString* projectDirectory = [[[[[CHApplicationController sharedController] mostActiveProject] directoryURL] path] copy];
     [self activateForProjectDirectory:(__strong id)nil];
     [self.window makeKeyAndOrderFront:nil];
 }
