@@ -25,6 +25,7 @@
 
 @property (strong) NSString* goToPath;
 @property int goToLine;
+@property (strong) IBOutlet NSObjectController *ProjectFindController;
 
 @property (strong) IBOutlet NSTextField *findField;
 @property (strong) IBOutlet NSTextField *replaceField;

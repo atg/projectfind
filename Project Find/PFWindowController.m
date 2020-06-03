@@ -141,6 +141,7 @@ static BOOL performReplacement(NSString* path, const char* repl, NSArray* matche
     
     // comment out this line when moving to choc
     [self activateForProjectDirectory:(__strong id)nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"CHProjectFindRecursive": @YES}];
     
     return self;
 }

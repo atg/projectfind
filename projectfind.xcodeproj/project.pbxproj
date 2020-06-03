@@ -38,6 +38,9 @@
 		75D6C40817848E8F0091C20D /* city.cc in Sources */ = {isa = PBXBuildFile; fileRef = 75D6C40617848E8E0091C20D /* city.cc */; };
 		75D6C40917848E8F0091C20D /* city.cc in Sources */ = {isa = PBXBuildFile; fileRef = 75D6C40617848E8E0091C20D /* city.cc */; };
 		75D6C420178500540091C20D /* ewok.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75D6C41F178500530091C20D /* ewok.jpg */; };
+		E675D64B187B8B7F00D17A6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E675D64A187B8B7F00D17A6C /* Images.xcassets */; };
+		E675D64D187B8C0300D17A6C /* icon_512x512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E675D64C187B8C0300D17A6C /* icon_512x512@2x.png */; };
+		E675D64F187B8C5900D17A6C /* icon_512x512@2x.eps in Resources */ = {isa = PBXBuildFile; fileRef = E675D64E187B8C5900D17A6C /* icon_512x512@2x.eps */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		75D6C40617848E8E0091C20D /* city.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = city.cc; path = "deps/cityhash-read-only/src/city.cc"; sourceTree = SOURCE_ROOT; };
 		75D6C40717848E8F0091C20D /* city.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = city.h; path = "deps/cityhash-read-only/src/city.h"; sourceTree = SOURCE_ROOT; };
 		75D6C41F178500530091C20D /* ewok.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ewok.jpg; sourceTree = "<group>"; };
+		E675D64A187B8B7F00D17A6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E675D64C187B8C0300D17A6C /* icon_512x512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_512x512@2x.png"; sourceTree = "<group>"; };
+		E675D64E187B8C5900D17A6C /* icon_512x512@2x.eps */ = {isa = PBXFileReference; lastKnownFileType = text; path = "icon_512x512@2x.eps"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,8 @@
 		75D6C384177CDAFC0091C20D = {
 			isa = PBXGroup;
 			children = (
+				E675D64E187B8C5900D17A6C /* icon_512x512@2x.eps */,
+				E675D64C187B8C0300D17A6C /* icon_512x512@2x.png */,
 				75D6C3FA1780CA840091C20D /* liblzma.a */,
 				75D6C3FB1780CA840091C20D /* libpcre.a */,
 				75D6C3FE1780F8740091C20D /* XPCBridge.h */,
@@ -254,6 +262,7 @@
 				75D6C3D6177D9BBA0091C20D /* Supporting Files */,
 				75D6C40317845E7F0091C20D /* PFProgressGradientBar.h */,
 				75D6C40417845E7F0091C20D /* PFProgressGradientBar.m */,
+				E675D64A187B8B7F00D17A6C /* Images.xcassets */,
 			);
 			path = "Project Find";
 			sourceTree = "<group>";
@@ -351,7 +360,10 @@
 			files = (
 				75D6C3DA177D9BBA0091C20D /* InfoPlist.strings in Resources */,
 				75D6C3E0177D9BBA0091C20D /* Credits.rtf in Resources */,
+				E675D64D187B8C0300D17A6C /* icon_512x512@2x.png in Resources */,
+				E675D64F187B8C5900D17A6C /* icon_512x512@2x.eps in Resources */,
 				75D6C3E6177D9BBB0091C20D /* MainMenu.xib in Resources */,
+				E675D64B187B8B7F00D17A6C /* Images.xcassets in Resources */,
 				75D6C3F1177F6AF20091C20D /* PFProjectFind.xib in Resources */,
 				75D6C420178500540091C20D /* ewok.jpg in Resources */,
 			);
